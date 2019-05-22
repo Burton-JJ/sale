@@ -1,0 +1,8 @@
+##日志相关配置
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#    path: D:\softFiles\loggerInfo\
+#  file: D:\softFiles\loggerInfo\sale\ #日志保存地址
+#  level:
+#    com.burton.sale.LoggerTest: debug
