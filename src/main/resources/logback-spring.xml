@@ -4,49 +4,56 @@
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                %d - %msg%n
+                <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
             </pattern>
         </layout>
     </appender>
-    <!--文件输出 info和error分开 这里是info 每日滚动式输出-->
-    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--排除error级别日志 其他级别日志都放在info日志文件中 从上往下匹配apperder规则-->
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>DENY</onMatch>
-            <onMismatch>ACCEPT</onMismatch>
-        </filter>
-        <encoder>
-            <pattern>
-                %d - %msg%n
-            </pattern>
-        </encoder>
-        <!--滚动策略 方案-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--路径-->
-            <fileNamePattern>D:\softFiles\loggerInfo\info.%d.log</fileNamePattern>
-        </rollingPolicy>
-    </appender>
+    <!--&lt;!&ndash;文件输出 info和error分开 这里是info 每日滚动式输出&ndash;&gt;-->
+    <!--<appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--&lt;!&ndash;排除error级别日志 其他级别日志都放在info日志文件中 从上往下匹配apperder规则&ndash;&gt;-->
+        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">-->
+            <!--<level>ERROR</level>-->
+            <!--<onMatch>DENY</onMatch>-->
+            <!--<onMismatch>ACCEPT</onMismatch>-->
+        <!--</filter>-->
+        <!--<encoder>-->
+            <!--<pattern>-->
+                <!--%d - %msg%n-->
+            <!--</pattern>-->
+        <!--</encoder>-->
+        <!--&lt;!&ndash;滚动策略 方案&ndash;&gt;-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash;路径&ndash;&gt;-->
+            <!--<fileNamePattern>D:\softFiles\loggerInfo\info.%d.log</fileNamePattern>-->
+            <!--<maxFileSize>${LOG_FILE_MAX_SIZE:-10MB}</maxFileSize>-->
+            <!--<maxHistory>${LOG_FILE_MAX_HISTORY:-0}</maxHistory>-->
+        <!--</rollingPolicy>-->
+    <!--</appender>-->
     <!--文件输出 这里是error 每日滚动式输出-->
-    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="fileLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--过滤器，只把error等级日志放入error日志文件中 这样过滤是把等级大与等于该等级所有日志截获-->
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>ERROR</level>
-        </filter>
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>ERROR</level>-->
+        <!--</filter>-->
         <encoder>
-            <pattern>
-                %d - %msg%n
-            </pattern>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </encoder>
         <!--滚动策略 方案-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>D:\softFiles\loggerInfo\error.%d.log</fileNamePattern>
+            <fileNamePattern>D:\softFiles\loggerInfo\%d.%i.log</fileNamePattern>
+            <maxFileSize>20KB</maxFileSize>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
+
+    <logger name="com.burton.sale.daos" level="DEBUG"/>
+
     <root level="info">
         <appender-ref ref="consoleLog"></appender-ref>
-        <appender-ref ref="fileInfoLog"></appender-ref>
-        <appender-ref ref="fileErrorLog"></appender-ref>
+        <!--<appender-ref ref="fileInfoLog"></appender-ref>-->
+        <appender-ref ref="fileLog"></appender-ref>
     </root>
 </configuration>
