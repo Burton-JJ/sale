@@ -48,8 +48,8 @@
         </javaClientGenerator>
         <!-- 指定数据库表 -->
         <table tableName="product_info" domainObjectName="ProductInfo"></table>
-        <table tableName="product_category" domainObjectName="ProductCategory"></table>
-        <table tableName="order_master" domainObjectName="OrderMaster"></table>
-        <table tableName="order_detail" domainObjectName="OrderDetail"></table>
+        <!--<table tableName="product_category" domainObjectName="ProductCategory"></table>-->
+        <!--<table tableName="order_master" domainObjectName="OrderMaster"></table>-->
+        <!--<table tableName="order_detail" domainObjectName="OrderDetail"></table>-->
     </context>
 </generatorConfiguration>

@@ -1,9 +1,20 @@
 package com.burton.sale.beans;
 
+import com.burton.sale.enums.OrderStatusEnum;
+import com.burton.sale.enums.PayStatusEnum;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单主要信息
+ */
+@Getter
+@Setter
 public class OrderMaster {
+
     private String orderId;
 
     private String buyerName;
@@ -16,91 +27,17 @@ public class OrderMaster {
 
     private BigDecimal orderAmount;
 
-    private Byte orderStatus;
-
-    private Byte payStatus;
+    /**
+     * 订单状态默认为新订单
+     */
+    private Integer orderStatus = OrderStatusEnum.NEW.getOrderStatusCode();
+    /**
+     * 支付状态默认为等待支付
+     */
+    private Integer payStatus = PayStatusEnum.WAIT.getPayStatusCode();
 
     private Date createTime;
 
     private Date updateTime;
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
-    }
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName == null ? null : buyerName.trim();
-    }
-
-    public String getBuyerPhone() {
-        return buyerPhone;
-    }
-
-    public void setBuyerPhone(String buyerPhone) {
-        this.buyerPhone = buyerPhone == null ? null : buyerPhone.trim();
-    }
-
-    public String getBuyerAddress() {
-        return buyerAddress;
-    }
-
-    public void setBuyerAddress(String buyerAddress) {
-        this.buyerAddress = buyerAddress == null ? null : buyerAddress.trim();
-    }
-
-    public String getBuyerOpenid() {
-        return buyerOpenid;
-    }
-
-    public void setBuyerOpenid(String buyerOpenid) {
-        this.buyerOpenid = buyerOpenid == null ? null : buyerOpenid.trim();
-    }
-
-    public BigDecimal getOrderAmount() {
-        return orderAmount;
-    }
-
-    public void setOrderAmount(BigDecimal orderAmount) {
-        this.orderAmount = orderAmount;
-    }
-
-    public Byte getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(Byte orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public Byte getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Byte payStatus) {
-        this.payStatus = payStatus;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

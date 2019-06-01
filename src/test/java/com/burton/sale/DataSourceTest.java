@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * @author Burton
@@ -26,5 +28,23 @@ public class DataSourceTest {
     public void datasourceTest() {
         System.out.println(this.dataSource);
     }
+
+    @Test
+    public void randomTest() {
+        Random random = new Random();
+        for (int i = 0; i<20; i++) {
+            int j = random.nextInt(7);
+            System.out.println(j);
+        }
+    }
+
+    @Test
+    public void testUUID() {
+        UUID uuid = UUID.randomUUID();
+        String s = uuid.toString();
+        System.out.println(s);
+
+    }
+
 
 }

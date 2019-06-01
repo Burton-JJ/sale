@@ -12,7 +12,7 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     username: root
     password: 123456
-    url: jdbc:mysql://localhost:3306/sales?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/sales?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中
     # 初始化大小，最小，最大
@@ -37,5 +37,16 @@ spring:
     useGlobalDataSourceStat: true
     # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#    mybatis xml sql文件
 mybatis:
   mapper-locations: classpath:mappers/**/*.xml
+#  分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true #为了使用输入页数为负或者超出最大页时候使页数为最小或最大值
+  support-methods-arguments: true
+  params: count=countSql
+#项目名 访问最开始路劲
+server:
+  servlet:
+    context-path: /sales
